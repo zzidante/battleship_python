@@ -9,7 +9,7 @@ def play_game():
     else:
       print "Thanks for playing! See you next time!"
   
-  # instantiate board, print it pretty before a turn
+  # instantiate board
   
   board = []
 
@@ -20,9 +20,7 @@ def play_game():
     for row in board:
       print " ".join(row)
 
-  print_board(board)
-
-  # Place a ship in random location on board
+  # Place a ship in random location
 
   def random_row(board):
     return randint(0, len(board) - 1)
@@ -30,13 +28,15 @@ def play_game():
   def random_col(board):
     return randint(0, len(board[0]) - 1)
 
-  ship_row = random_row(board)
-  ship_col = random_col(board)
-
   # Game Loop, 4 turns.
-
   for turn in range(4):
+    if turn == 0:
+      print_board(board)
+      ship_row = random_row(board)
+      ship_col = random_col(board)
+
     print "Turn ", turn + 1
+
 		# TODO: sterilize user input, no answer breaks program
     guess_row = raw_input("Guess Row: ")
     guess_col = raw_input("Guess Col: ")
@@ -45,6 +45,7 @@ def play_game():
     guess_col = int(guess_col) - 1
 
     if guess_row == ship_row and guess_col == ship_col:
+      board[guess_row][guess_col] = "W"
       print "Congratulations! You sunk my battleship!"
       break
     else:
@@ -60,5 +61,9 @@ def play_game():
       if turn == 3:
         print "Game Over"
         play_again()
+  
+  # game loop exiting on win
+  print_board(board)
+  play_again()
           
 play_game()
