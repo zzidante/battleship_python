@@ -30,17 +30,24 @@ def play_game():
 
   # Game Loop, 4 turns.
   for turn in range(4):
+
+    guess_row = ""
+    guess_col = ""
+
     if turn == 0:
       print_board(board)
       ship_row = random_row(board)
       ship_col = random_col(board)
 
     print "Turn ", turn + 1
-	
-    
-    guess_row = raw_input("Guess Row: ")
-    guess_col = raw_input("Guess Col: ")
-    
+
+    while not guess_row or not guess_col:
+      guess_row = raw_input("Guess Row: ")
+      guess_col = raw_input("Guess Col: ")
+      
+      if not guess_row or not guess_col:
+        print "Invalid input, try again"
+
     guess_row = int(guess_row) - 1
     guess_col = int(guess_col) - 1
 
