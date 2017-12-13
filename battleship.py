@@ -42,9 +42,9 @@ def play_game():
     print "Turn ", turn + 1
 
     while not guess_row or not guess_col:
-      guess_row = raw_input("Guess Row: ")
-      guess_col = raw_input("Guess Col: ")
-      
+      guess_row = raw_input("Guess Row: ").strip()
+      guess_col = raw_input("Guess Col: ").strip()
+
       if not guess_row or not guess_col:
         print "Invalid input, try again"
 
