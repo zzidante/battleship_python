@@ -36,8 +36,8 @@ def play_game():
       ship_col = random_col(board)
 
     print "Turn ", turn + 1
-
-		# TODO: sterilize user input, no answer breaks program
+	
+    
     guess_row = raw_input("Guess Row: ")
     guess_col = raw_input("Guess Col: ")
     
@@ -47,6 +47,7 @@ def play_game():
     if guess_row == ship_row and guess_col == ship_col:
       board[guess_row][guess_col] = "W"
       print "Congratulations! You sunk my battleship!"
+      print_board(board)
       break
     else:
       if (guess_row < 0 or guess_row > 4) or (guess_col < 0 or guess_col > 4):
@@ -60,10 +61,8 @@ def play_game():
       print_board(board)
       if turn == 3:
         print "Game Over"
-        play_again()
   
   # game loop exiting on win
-  print_board(board)
   play_again()
           
 play_game()
